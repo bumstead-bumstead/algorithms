@@ -40,7 +40,6 @@ public class BOJ1158 {
                     cnt = 0;
                     continue;
                 }
-
             }
         }
 
