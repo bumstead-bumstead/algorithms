@@ -45,4 +45,3 @@ public class BOJ2493Stack {
 
     }
 }
-ㅐ
