@@ -32,8 +32,6 @@ public class BOJ6198 {
 
             while (!stack.isEmpty()) {
                 if (buildings[stack.peek()] >= buildings[i]) {
-//                    System.out.println(i + "부터 " + stack.peek() + "번 째 건물까지");
-//                    System.out.println(stack.peek() - i - 1);
                     sum += stack.peek() - i -1;
                     stack.push(i);
                     break;
@@ -42,8 +40,6 @@ public class BOJ6198 {
             }
 
             if (stack.isEmpty()) {
-//                System.out.println(i + "번 째 건물은 끝이 없는놈..");
-//                System.out.println(buildings.length - i - 1);
                 sum += buildings.length - i - 1;
                 stack.push(i);
             }

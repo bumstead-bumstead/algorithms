@@ -40,8 +40,6 @@ public class BOJ2493Stack {
                 sb.append(0).append(" ");
             }
         }
-
         System.out.println(sb);
-
     }
 }
