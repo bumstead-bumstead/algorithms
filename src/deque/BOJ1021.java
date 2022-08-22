@@ -18,7 +18,7 @@ public class BOJ1021 {
         String[] b = br.readLine().split(" ");
         int n = Integer.parseInt(a[0]);
         Queue<Integer> queue = new LinkedList<>(); //왼쪽에서 뽑는놉
-        Deque<Integer> deque = new ArrayDeque<>(); //오른쪽에서 뽑는놈의 자식
+        Deque<Integer> deque = new ArrayDeque<>(); //오른쪽에서 뽑는놈
         for (int i = 1; i <= n; i++) {
             queue.offer(i);
             deque.offer(i);
