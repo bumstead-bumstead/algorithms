@@ -27,6 +27,7 @@ public class BOJ1697 {
         while (!queue.isEmpty()) {
             int threshold = queue.size();
             for (int i = 0; i < threshold; i++) {
+                System.out.println(queue.size());
                 int[] tmp = createArray(queue.poll());
                 for (int x : tmp) {
                     if (x > 100000 || x < 0) continue;

@@ -18,6 +18,7 @@ public class BOJ7576 {
     static int ny;
 
     public static void main(String[] args)throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String[] a = br.readLine().split(" ");
@@ -27,6 +28,7 @@ public class BOJ7576 {
         board = new int[n][m];
         dist = new int[n][m];
 
+        long start = System.currentTimeMillis();
         for (int i = 0; i < n; i++) {
             Arrays.fill(dist[i], 1002);
         }
@@ -57,6 +59,8 @@ public class BOJ7576 {
             }
         }
         System.out.println(max);
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
     }
 
     private static void BFS(int x, int y) {
@@ -73,7 +77,7 @@ public class BOJ7576 {
                 ny = tmp.getY() + dy[k];
 
                 if (nx < 0 || ny < 0 || nx > n -1 || ny > m -1) continue;
-                if (dist[nx][ny] < dist[tmp.getX()][tmp.getY()]+1 || board[nx][ny] != 0) continue;
+                if (dist[nx][ny] <= dist[tmp.getX()][tmp.getY()]+1 || board[nx][ny] != 0) continue;
 
                 queue.offer(new Pair(nx, ny));
                 dist[nx][ny] = dist[tmp.getX()][tmp.getY()]+1;
