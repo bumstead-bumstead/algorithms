@@ -106,7 +106,6 @@ public class BOJ2206 {
                 queue.offer(new Pair4(nx, ny, tmp.getBroken()));
                 visited[brokenVar][nx][ny] = visited[brokenVar][tmp.getX()][tmp.getY()] + 1;
             }
-//            showvisited(visited);
         }
         System.out.println(-1);
     }
