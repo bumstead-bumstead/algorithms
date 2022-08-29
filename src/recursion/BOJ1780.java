@@ -28,6 +28,7 @@ public class BOJ1780 {
         System.out.println(paper0(0, 0, N, 1));
 
     }
+
     private static int paper0(int x, int y, int n, int target) {
 //        System.out.println("paper2(x = " + x + ", y = " + y + ", n = "+ n + ") 실행");
 
@@ -49,11 +50,8 @@ public class BOJ1780 {
                 answer += tmp;
             }
         }
-//        System.out.println("answer = " + answer);
-//        System.out.println("-------------------------");
         if (answer == -9) {
             if (N == n) {
-//                System.out.println("걸림");
                 return 1;
             }
             return -1;

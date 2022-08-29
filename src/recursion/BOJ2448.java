@@ -39,7 +39,7 @@ public class BOJ2448 {
 
 
     //시작 좌표는 x=0, y=23?
-    private static void triangleStar(int x, int y, int n) { // boolean blank
+    private static void triangleStar(int x, int y, int n) {
         if (n==3) {
             for (int i = 0; i < 8; i++) {
                 board[x+ dx[i]][y+ dy[i]] = "*";
@@ -50,7 +50,5 @@ public class BOJ2448 {
         triangleStar(x, y, n/2);
         triangleStar(x + n/2, y - n/2, n/2);
         triangleStar(x + n/2, y + n/2, n/2);
-
-
     }
 }
