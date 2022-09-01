@@ -8,7 +8,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 //극이 다르면 돌고 같으면 안돈다..
-// -> 돌고나서가 아니라 돌기 전에 같은지 다른지를 말하는거임!!!!!!!!!!!!
+// -> 돌고나서가 아니라 돌기 전에 같은지 다른지를 말하는거임!!!!!!!!!!!! -> 이것때문에 오래걸렸당
 public class BOJ14891_2 {
     static LinkedList<Integer>[] gears = new LinkedList[5];
     static int[] dx = {-1, 1};
