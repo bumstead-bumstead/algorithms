@@ -46,6 +46,10 @@ public class BOJ16985 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        backTrack(0);
+//        for (int i = 0; i < 120; i++) {
+//            System.out.println(Arrays.toString(cases2[i]));
+//        }
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -60,43 +64,61 @@ public class BOJ16985 {
         int answer = Integer.MAX_VALUE;
 
         for (int i = 0; i < 1024; i++) {
-
-
             for (int l = 0; l < 120; l++) {
-
-            }
-            //board 가져오기
-            tmpBoard = new boolean[5][5][5];
-            for (int j = 0; j < 5; j++) {
-                for (int k = 0; k < 5; k++) {
-                    tmpBoard[j][k] = Arrays.copyOf(board[j][k], 5);
+                int[] tmpStack = cases2[l];
+                //board 가져오기
+                tmpBoard = new boolean[5][5][5];
+                for (int j = 0; j < 5; j++) {
+                    for (int k = 0; k < 5; k++) {
+                        tmpBoard[tmpStack[j]][k] = Arrays.copyOf(board[j][k], 5);
+                    }
                 }
-            }
 
-            fourJinsu(cases, i);
+//                if (l == 3 && i ==0) {
+//                    System.out.println(Arrays.toString(tmpStack));
+//                    showboard();
+//                }
 
-            //돌리기~
-            for (int j = 0; j < 5; j++) { //모든 층에대해서
-                for (int k = 0; k < cases[j]; k++) { //돌리기 반복 횟수
-                    bingbing(j);
+                fourJinsu(cases, i);
+
+                //돌리기~
+                for (int j = 0; j < 5; j++) { //모든 층에대해서
+                    for (int k = 0; k < cases[j]; k++) { //돌리기 반복 횟수
+                        bingbing(j);
+                    }
                 }
+                if (!tmpBoard[0][0][0] || !tmpBoard[4][4][4]) continue;
+                int tmpDist = bfs(tmpBoard);
+                if (tmpDist == 12) {
+                    showboard();
+                }
+//                if (tmpDist != -1 ) System.out.println(tmpDist);
+
+                if (tmpDist == -1) continue;
+                answer = answer <= tmpDist ? answer : tmpDist;
             }
 
-            int tmpDist = bfs(tmpBoard);
-            if (tmpDist != -1 ) System.out.println(tmpDist);
-
-            if (tmpDist == -1) continue;
-            answer = answer <= tmpDist ? answer : tmpDist;
         }
-
         if (answer == Integer.MAX_VALUE) System.out.println(-1);
         else System.out.println(answer);
-
     }
 
+    static int[] arr = new int[5];
+    static int[][] cases2 = new int[120][5];
+    static int backCnt = 0;
+    static boolean[] visited2 = new boolean[5];
     private static void backTrack(int depth) {
         if (depth == 5) {
+            cases2[backCnt++] = Arrays.copyOf(arr, 5);
+        }
 
+        for (int i = 0; i < 5; i++) {
+            if (visited2[i]) continue;
+
+            visited2[i] = true;
+            arr[depth] = i;
+            backTrack(depth+1);
+            visited2[i] = false;
         }
     }
 
