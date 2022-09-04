@@ -1,21 +1,15 @@
 package simulation;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class test {
     static int[][] test;
     public static void main(String[] args) {
-         test = new int[][]{{1, 1, 1, 1, 1}, {0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}, {0, 0, 0, 0, 1}};
-        showboard(test);
-        bingbing();
-        showboard(test);
-        bingbing();
-        showboard(test);
-        bingbing();
-        showboard(test);
-        bingbing();
-
-
+        LinkedList<Integer> a = new LinkedList<>();
+        a.offer(1);
+        a.offer(2);
+        a.offer(3);
 
     }
     static void showboard(int[][] board) {
