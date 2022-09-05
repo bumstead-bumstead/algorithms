@@ -24,7 +24,6 @@ class GearSecond {
     }
 }
 
-//극이 다르면 돌고 같으면 안돈다..
 public class BOJ14891 {
     static LinkedList<Integer>[] gears = new LinkedList[5];
     static int[] dx = {-1, 1};
@@ -46,13 +45,13 @@ public class BOJ14891 {
             StringTokenizer st = new StringTokenizer(br.readLine());
             willBeRotate.offer(new GearSecond(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
 
-            System.out.println("-----------------------");
+//            System.out.println("-----------------------");
             while (!willBeRotate.isEmpty()) {
                 GearSecond tmpGear = willBeRotate.poll();
-                System.out.println(tmpGear.idx + "번 톱니바퀴 " + tmpGear.dir + "방향으로 돌아간다잉");
-                System.out.println("돌기 전 : " + gears[tmpGear.idx]);
+//                System.out.println(tmpGear.idx + "번 톱니바퀴 " + tmpGear.dir + "방향으로 돌아간다잉");
+//                System.out.println("돌기 전 : " + gears[tmpGear.idx]);
                 rotate(gears[tmpGear.idx], tmpGear.dir);
-                System.out.println("돌고 나서  : " + gears[tmpGear.idx]);
+//                System.out.println("돌고 나서  : " + gears[tmpGear.idx]);
 
                 for (int j = 0; j < 2; j++) {
                     int tmpIdx = tmpGear.idx + dx[j];
@@ -85,10 +84,8 @@ public class BOJ14891 {
 
     private static void rotate(LinkedList<Integer> gear, int dir) {
         if (dir == -1) { //반시계 방향이면, 앞에가 맨뒤로
-//            System.out.println("반시곙~");
             gear.offer(gear.poll());
         } else { //시계방향이면, 맨뒤가 맨앞으로
-//            System.out.println("시곙~");
             gear.offerFirst(gear.pollLast());
         }
     }

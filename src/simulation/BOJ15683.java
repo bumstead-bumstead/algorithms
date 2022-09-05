@@ -56,16 +56,11 @@ public class BOJ15683 {
 
         int[] directions = new int[cctvs.size()];
         int caseNum = (int) Math.pow(4, cctvs.size());
-//        System.out.println("caseNum = " + caseNum);
-
 
         int max = 0;
 
         for (int i = 0; i < caseNum; i++) {
-//            System.out.println("---------------------------");
             fourJinsu(directions, i);
-//            System.out.println(Arrays.toString(directions));
-
 
             int tmpSum = 0;
             monitored = new boolean[n][m];
@@ -110,7 +105,6 @@ public class BOJ15683 {
 
     private static int monitor(int x, int y, int direction) {
         int cnt = 0;
-//        System.out.println("x = " + x + ", y = " + y + ", direction = " + direction + "일 때, ");
         while (true) {
             x = x + dx[direction];
             y = y + dy[direction];
@@ -121,7 +115,6 @@ public class BOJ15683 {
             monitored[x][y] = true;
             cnt++;
         }
-//        System.out.println(cnt + "개 cover");
         return cnt;
     }
 

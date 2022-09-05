@@ -1,13 +1,5 @@
 package simulation;
 
-/*
-* 1. board 왼쪽 위부터 쭉 검사
-* 2. 빈칸 만나면 스티커 크기 (r,c)에 대해서 스티커가 있는 부분이 비어있는지 검사
-* 2-1. 그렇다면, 붙이고 다음 스티커에 대해서 반복
-* 2-2. 그렇지 않다면, 계속 검사
-* 3. 끝까지 못찾으면, 스티커 돌린 뒤 처음부터 검사 (
-* */
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,7 +31,6 @@ public class BOJ18808 {
                     if (st.nextToken().equals("1")) tmpSticker[j][k] = true;
                 }
             }
-//            showBoard();
 
             //스티커 붙일 수 있는 지 검사 후 붙이기
             a : for (int l = 0; l < 4; l++){
@@ -52,7 +43,6 @@ public class BOJ18808 {
                     }
                 }
 
-//                System.out.println("---------rotate----------");
                 rotate(x, y);
                 int tmp = x;
                 x = y;
@@ -94,19 +84,16 @@ public class BOJ18808 {
 
         for (int i = 0; i < y; i++) { //열에 대한 검사
             for (int j = x-1; j >= 0; j--) { //행에 대한 검사
-//                System.out.println("(" + j + ", " + i + ") to (" + (cnt/x) + ", " + (cnt%x) + ")");
                 newThang[cnt / x][cnt % x] = tmpSticker[j][i];
                 cnt++;
             }
         }
 
-//        showBoard();
         tmpSticker = newThang;
         int tmp = x;
         x = y;
         y = tmp;
 
-//        showBoard();
     }
 
     private static void showBoard() {

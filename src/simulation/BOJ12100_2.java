@@ -26,7 +26,7 @@ public class BOJ12100_2 {
 
         int[] direction = new int[5];
         int answer = 0;
-        for (int i = 0; i < 1024; i++) { // 0 1 1 1 1 : 4 + 16 + 64 + 256
+        for (int i = 0; i < 1024; i++) {
             tmpBoard = new int[n][n];
 
             for (int j = 0; j < n; j++) {
@@ -46,12 +46,6 @@ public class BOJ12100_2 {
                         break;
                     case 3 : left2(tmpBoard); break;
                 }
-
-//                if (i == 340) {
-//                    System.out.println(Arrays.toString(direction));
-//                    showBoard();
-//                    System.out.println("---------------------");
-//                }
             }
 
             answer = maxNum(tmpBoard) > answer ? maxNum(tmpBoard) : answer;
@@ -85,9 +79,7 @@ public class BOJ12100_2 {
 
     //왼쪽으로 쌔리는경우
     static void left2(int[][] tmpBoard) {
-        /*
-        * 스택에 쌓으면서 같은숫자면 pop(), 방어막 하나 넣어놓음
-        * */
+
         for (int i = 0; i < n; i++) {
             LinkedList<Integer> deque = new LinkedList<>();
             for (int j = 0; j < n; j++) {
@@ -110,9 +102,7 @@ public class BOJ12100_2 {
     }
 
     static void right2(int[][] tmpBoard) {
-        /*
-         * 스택에 쌓으면서 같은숫자면 pop(), 방어막 하나 넣어놓음
-         * */
+
         LinkedList<Integer> deque = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             deque.clear();
@@ -135,9 +125,7 @@ public class BOJ12100_2 {
         }
     }
     static void up2(int[][] tmpBoard) {
-        /*
-         * 스택에 쌓으면서 같은숫자면 pop(), 방어막 하나 넣어놓음
-         * */
+
         LinkedList<Integer> deque = new LinkedList<>();
         for (int j = 0; j < n; j++) {
             for (int i = 0; i < n; i++) {
@@ -160,9 +148,7 @@ public class BOJ12100_2 {
     }
 
     static void down2(int[][] tmpBoard) {
-        /*
-         * 스택에 쌓으면서 같은숫자면 pop(), 방어막 하나 넣어놓음
-         * */
+
         LinkedList<Integer> deque = new LinkedList<>();
         for (int j = 0; j < n; j++) {
             for (int i = n-1; i >= 0; i--) {

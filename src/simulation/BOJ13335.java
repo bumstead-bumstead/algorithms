@@ -45,9 +45,6 @@ public class BOJ13335 {
         int totalTime = 1;
 
         for (int i = 1; i < n; i++) {
-//            System.out.println(queue);
-//            System.out.println(totalTime);
-
             if (tmpWeight + trucks[i] > L) {
                 while (tmpWeight + trucks[i] > L) {
                     int tmpLeft = queue.peek().left;
