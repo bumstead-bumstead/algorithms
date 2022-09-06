@@ -7,21 +7,14 @@ import java.util.*;
 //radix sort 활용
 public class BOJ5648 {
     public static void main(String[] args) throws IOException {
-//        int[] a = new int[]{1601, 90100, 13009, 802, 301, 210};
         Scanner sc = new Scanner(System.in);
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-//        StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(sc.next());
         long[] arr = new long[n];
 
         for (int i = 0; i < n; i++) {
-//            if (!st.hasMoreTokens()) {
-//                st = new StringTokenizer(br.readLine());
-//            }
             arr[i] = reverseNum(sc.next());
         }
-//        reverseRadix(arr);
         Arrays.sort(arr);
         for (long x : arr) {
             bw.write(x + " ");
@@ -47,9 +40,6 @@ public class BOJ5648 {
 
         for (int i = 0; i < 13; i++) {
             for (long x : arr) {
-//                System.out.println("n = " + n);
-//                System.out.println("x = " + x);
-//                list[(x - x % (n/10))% n].add(x);
                 list[(int) x % n / (n / 10)].add(x);
             }
 

@@ -24,7 +24,6 @@ public class BOJ2910 {
         }
 
         List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
-//        System.out.println(list);
 
         list.sort(new Comparator<Map.Entry<Integer, Integer>>() {
             @Override
