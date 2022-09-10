@@ -19,7 +19,7 @@ public class BOJ9095 {
 
         int[] d = new int[12];
 
-        for (int i = 0; i < testN; i++) {
+           for (int i = 0; i < testN; i++) {
             Arrays.fill(d, 0);
             d[0] = 0; d[1] = 1; d[2] = 2; d[3] = 4; //(1 2) (2 1) (1 1 1)
             int n = Integer.parseInt(br.readLine());

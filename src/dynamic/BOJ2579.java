@@ -55,6 +55,4 @@ public class BOJ2579 {
         }
         System.out.println(Math.max(d[6][1], d[6][2]));
     }
-
-
 }

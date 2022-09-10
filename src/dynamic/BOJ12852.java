@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 
 
-//다시보기.     추가적인 정보를 저장해야하는 경우ㅠ
+//다시보기. 추가적인 정보를 저장해야하는 경우ㅠ
 public class BOJ12852 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,7 +36,7 @@ public class BOJ12852 {
         }
 
 //        System.out.println(Arrays.toString(d));
-        System.out.println(Arrays.toString(trace));
+//        System.out.println(Arrays.toString(trace));
         int cur = n;
 
         while (true) {
