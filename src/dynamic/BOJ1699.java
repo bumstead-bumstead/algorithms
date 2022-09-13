@@ -29,6 +29,7 @@ public class BOJ1699 {
 
         int cnt = 0;
         int pointer = list.size() - 1;
+
         while(n > 0) {
             while (n >= list.get(pointer)) {
                 System.out.println(list.get(pointer));

@@ -18,7 +18,7 @@ import java.util.Arrays;
 * LCS : 최장 공통 부분 수열
 * d[i][j] = 0~i까지의 문자열과 0~j까지의 문자열 사이의 LCS
 * 1. 문자 i, j가 같으면, D[i][j] = d[i-1][j-1] + 1
-* 2. 그렇지 않으면 d[i][j] = d[i-1][j]; -> 왜 이전행과 이전열 중에 큰걸가져옴???
+* 2. 그렇지 않으면 d[i][j] = d[i-1][j];
 * */
 public class BOJ9251 {
     public static void main(String[] args) throws IOException {
