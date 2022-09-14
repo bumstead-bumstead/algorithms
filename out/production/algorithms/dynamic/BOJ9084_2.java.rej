@@ -1,0 +1,4 @@
+diff a/src/dynamic/BOJ9084_2.java b/src/dynamic/BOJ9084_2.java	(rejected hunks)
+@@ -0,0 +1,2 @@
++package dynamic;public class BOJ9084_2 {
++}
