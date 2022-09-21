@@ -29,8 +29,6 @@ public class BOJ1026 {
         Arrays.sort(a);
         Arrays.sort(b);
 
-//        System.out.println(Arrays.toString(a));
-
         int answer = 0;
 
         for (int i = 0; i < n; i++) {

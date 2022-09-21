@@ -8,6 +8,12 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /*
+* 처음 n개를 꽃는 과정을 따로 뽑아서 틀렸다.. n개가 모두 다른 제품이 아닐 수도 있으니까
+* 가독성 개쓰레기
+* */
+
+
+/*
 * 0. 각 전기용품 별 사용횟수 유지
 * 1. 멀티탭 구멍 수만큼 꽂음
 * 2. 그 다음부터의 모든 전기용품에 대해서, 현재 꽂혀 있는지 확인
@@ -68,14 +74,13 @@ public class BOJ1700_2 {
                 }
             }
 
-//            System.out.println((tmpPlugs.get(willBeUnplug)) + " 뽑았음 : " + (i + 1) + "번째에서");
             tmpPlugs.set(willBeUnplug, arr[i]);
             answer++;
         }
 
         System.out.println(answer);
     }
-
+    
     private static boolean contains(List<Integer> arr, int n) {
         for (int x : arr) {
             if (n == x) return true;
