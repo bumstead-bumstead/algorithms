@@ -9,7 +9,6 @@ import java.util.Stack;
 
 /*
 * 뒤에서부터 빼기 계산해버리깅
-*
 * */
 public class BOJ1541 {
     public static void main(String[] args) throws IOException {
@@ -50,6 +49,4 @@ public class BOJ1541 {
         }
         System.out.println(answer);
     }
-
-
 }

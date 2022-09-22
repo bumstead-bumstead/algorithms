@@ -49,8 +49,7 @@ public class BOJ1700_2 {
 
         //꽂을 전기용품마다 돌아간다
         for (int i = 0; i < k; i++) {
-//            System.out.println(tmpPlugs);
-            machines[arr[i]].remove(machines[arr[i]].size() - 1); //???
+            machines[arr[i]].remove(machines[arr[i]].size() - 1);
             if (contains(tmpPlugs, arr[i])) continue;
 
             if (tmpPlugs.size() < n)  {
