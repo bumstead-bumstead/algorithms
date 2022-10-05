@@ -1,0 +1,415 @@
+# 처음
+  스택, 큐에 이어 이번엔 자바에서의 덱(deque)를 공부했다. deque는 Double Ended Queue의 줄임말로, 앞 뒤에서 모두 offer, poll할 수 있는 일종의 큐라고 볼 수 있다. 덱은 인터페이스로서 이를 구현한 클래스는 LinkedList, ArrayDeque 등이 있고, 이 기능을 위해 offerFirst(), pollLast(), peekLast() 등의 메서드가 구현되어 있다. 당연하게도 이 모든 메서드는 큐와 마찬가지로 O(1)의 시간복잡도를 갖는다. 
+  <br> 덱의 활용을 예제로 바로 확인해보자.
+
+---
+# 중간
+### 1. BOJ10866 - 덱
+![](https://velog.velcdn.com/images/bumstead/post/08cf7bfb-2636-483f-bfef-6fd7307f987d/image.png)
+스택과 큐 포스트에서도 풀었던 구현 문제다. 큐의 구현에서 몇 개의 메서드만 추가하면 되겠다.
+```java
+package deque;
+
+
+import java.io.*;
+import java.util.Arrays;
+
+class CustomDeque {
+    int[] arr;
+    int front; int back;
+    public CustomDeque(){
+        arr = new int[20000];
+        front = 10000;
+        back = 10000;
+    }
+
+    void push_back(int X) {
+        arr[back++] = X;
+    }
+    void push_front(int X) {
+        arr[--front] = X;
+    }
+
+    int pop_front() {
+        if (empty() == 1) return -1;
+        return arr[front++];
+    }
+
+    int pop_back() {
+        if (empty() == 1) return -1;
+        return arr[--back];
+    }
+
+    int empty() {return front == back ? 1 : 0;}
+
+    int front() {
+        if (empty() == 1) return -1;
+        return arr[front];
+    }
+
+    int back() {
+        if (empty() == 1) return -1;
+        return arr[back-1];
+    }
+
+    int size() { return back - front;}
+}
+
+public class BOJ10866 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int reps = Integer.parseInt(br.readLine());
+
+        CustomDeque deque = new CustomDeque();
+
+        for (int i = 0; i < reps; i++) {
+            String[] command = br.readLine().split(" ");
+
+            //switch문은 hashcode를 활용하기 때문에 같은 문자열이면 됨
+            switch (command[0]) {
+                case "push_front" : deque.push_front(Integer.parseInt(command[1])); break;
+                case "push_back" : deque.push_back(Integer.parseInt(command[1])); break;
+                case "pop_front" : bw.write(String.valueOf(deque.pop_front()));bw.newLine();break;
+                case "pop_back" : bw.write(String.valueOf(deque.pop_back()));bw.newLine();break;
+                case "front" : bw.write(String.valueOf(deque.front()));bw.newLine();break;
+                case "back" : bw.write(String.valueOf(deque.back()));bw.newLine();break;
+                case "empty" : bw.write(String.valueOf(deque.empty()));bw.newLine();break;
+                case "size" : bw.write(String.valueOf(deque.size()));bw.newLine();break;
+            }
+            System.out.println(Arrays.toString(Arrays.copyOfRange(deque.arr, deque.front, deque.back)));
+
+        }
+        bw.close();
+
+    }
+
+}
+
+```
+좌 우 어느쪽으로도 원소가 추가될 수 있기 때문에 포인터를 배열의 중간부터 시작하도록 했다. 스택, 큐의 구현의 연장선이기 때문에 자세한 설명은 생략하겠다.
+
+---
+### 2.BOJ1021 - 회전하는 큐
+![](https://velog.velcdn.com/images/bumstead/post/27554122-1402-4245-aeea-af6e932f67ac/image.png)
+문제 제목에서 대놓고 큐를 이용하라고 알려줬다. 큐가 필요하겠지만, 3번 연산에서 덱을 이용해야한다는 아이디어를 떠올려야한다. 
+```java
+package deque;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
+
+//이 문제 deque는 linkedList로 쓰면 된다.. 이색기가 deque 구현해서 indexOf()랑 deque기능 다쓸 수 ㅣㅇㅆ음
+public class BOJ1021 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] a = br.readLine().split(" ");
+        String[] b = br.readLine().split(" ");
+        int n = Integer.parseInt(a[0]);
+        Queue<Integer> queue = new LinkedList<>(); //왼쪽에서 뽑는놉
+        Deque<Integer> deque = new ArrayDeque<>(); //오른쪽에서 뽑는놈
+        for (int i = 1; i <= n; i++) {
+            queue.offer(i);
+            deque.offer(i);
+        }
+
+        int tmp;
+        int cntl=0;
+        int cntr=0;
+        int answer=0;
+        for (String x : b) {
+            tmp = Integer.parseInt(x);
+            while (queue.peek() != tmp) {
+                cntl++;
+                queue.offer(queue.poll());
+            }
+            queue.poll();
+
+            while (deque.peek() != tmp) {
+                cntr++;
+                deque.offerFirst(deque.pollLast());
+            }
+            deque.poll();
+
+            answer += cntl < cntr ? cntl : cntr;
+            cntl =0; cntr = 0;
+        }
+        System.out.println(answer);
+    }
+}
+
+```
+2, 3번 연산 중에 시간이 적게 드는 쪽을 결정하려면, 좌 우로부터 해당 원소가 얼마나 떨어져 있는지, 즉 인덱스가 어디인지를 파악해야하는데, ArrayDeque에는 해당 기능이 없었기 때문에 매번 양쪽에서 모두 해당 인덱스까지 이동한 뒤에, 작은 값만을 저장했다.
+<br> 하지만 Deque를 구현한 LinkedList에는 인덱스를 검색하는 메서드 indexOf()가 있기 때문에 이것을 활용해도 좋다. 이 방법은 연결리스트의 검색을 활용하기 때문에 시간복잡도 측면에서는 둘 다 비슷할 것 같다.
+
+---
+### 3. BOJ5430 - AC
+![](https://velog.velcdn.com/images/bumstead/post/259d7fe5-7d2f-42c0-a7df-214dae020529/image.png)
+한 쪽에서만 쏙쏙 빼는 기능이 필요하기 때문에 역시 큐를 떠올려야 한다. 하지만 배열을 뒤집는 연산이 필요하기 때문에 직관적으로 생각할 수 있는 방법은 실제로 배열을 만들어 연산마다 뒤집어주는 것이다. 그런데 p와 n의 합이 최대 70만이기 때문에 시간 초과가 뜰 것이 분명하다. 이 때 덱을 활용함으로써 쉽게 해결할 수 있다.
+```java
+package deque;
+
+import java.io.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+
+public class BOJ5430 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int reps = Integer.parseInt(br.readLine());
+
+        a : for (int i = 0; i < reps; i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            char[] commands = br.readLine().toCharArray();
+            LinkedList<Integer> deque = new LinkedList<>();
+            int arrN = Integer.parseInt(br.readLine());
+            String[] a = br.readLine().replaceAll("\\[", "").replaceAll("\\]", "").split(",");
+
+            if (!a[0].equals("")){
+                for (String x : a) {
+                    deque.offer(Integer.parseInt(x));
+                }
+            }
+
+            boolean reversed = false;
+
+            for (char command : commands) {
+                if (command == 'R') reversed = reversed ? false : true;
+                else {
+                    if (deque.isEmpty()) {
+                        bw.write("error");
+                        bw.newLine();
+                        continue a;
+                    }
+                    if (reversed) {
+                        deque.pollLast();
+                    } else deque.poll();
+                }
+            }
+            if (reversed) {
+                if (!deque.isEmpty()) sb.append(deque.pollLast());
+                while (!deque.isEmpty()) {
+                    sb.append(",").append(deque.pollLast());
+                }
+            }
+            else {
+                if (!deque.isEmpty()) sb.append(deque.poll());
+                while (!deque.isEmpty()) sb.append(",").append(deque.poll());
+            }
+            bw.write(sb.append("]").toString());
+            bw.newLine();
+        }
+        bw.close();
+    }
+}
+
+```
+  관점을 조금만 바꿔서 D에 대해서, 앞쪽에서 뽑다가 뒤집어졌을 때는 반대쪽에서 poll하면 되는것이다. boolean 변수 reversed를 선언해 뒤집어짐의 여부를 확인하고 poll하는 방향을 결정한다. 명령이 끝난 뒤에는 마지막으로 reversed를 확인해 true라면 뒤집어서 반환한다.
+  
+  ---
+  
+### 4.BOJ11003 - 최솟값 찾기
+![](https://velog.velcdn.com/images/bumstead/post/a77cf13c-a579-4d0f-b81e-647999a2378d/image.png)
+  D를 구하기 위해서는 **i-L+1번째 원소는 제외되고, i+1번째 원소는 추가되는 과정**이 계속해서 반복되는 수열을 구해야하기 때문에 우선 투 포인터나 덱을 떠올렸다. 하지만 모든 D에 대해서 최솟값을 구하기위해 검색을 하려면 시간복잡도가 O(N\*L)이 된다.
+  <br> 그래서 떠올린 두 번째 방법은 우선순위 큐(PriorityQueue) 클래스를 활용하는 방법이었다. 
+  
+  1. 우선순위 큐에 (A의 값, 인덱스)의 쌍을 A 크기 오름차순으로 정렬해서 저장한다.
+  2. 가장 작은 A 값부터 순서대로 접근하기 때문에, D의 i-L+1 ~ i (i는 해당 A의 인덱스)까지는 모두 A가 된다. -> D 배열 중에 비어있는 곳에만 A를 저장한다.
+  3. 2번 반복
+
+위의 로직을 구현했다.
+```java
+package deque;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+
+class As implements Comparable<As>{
+    private int num;
+    private int index;
+
+    public As(int num, int index) {
+        this.index = index;
+        this.num = num;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    @Override
+    public int compareTo(As as) {
+        return this.getNum() >= as.getNum() ? 1 : -1;
+    }
+
+    @Override
+    public String toString() {
+        return "As{" +
+                "num=" + num +
+                ", index=" + index +
+                '}';
+    }
+}
+
+public class BOJ11003 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        String[] NL = br.readLine().split(" ");
+        int L = Integer.parseInt(NL[1]);
+        int N = Integer.parseInt(NL[0]);
+        PriorityQueue<As> priorityQueue = new PriorityQueue<>();
+        int[] answer = new int[N];
+        boolean[] filled = new boolean[N];
+
+        int[] A = new int[Integer.parseInt(NL[0])];
+        int cnt = 0;
+        for (String x : br.readLine().split(" ")) {
+            A[cnt++] = Integer.parseInt(x);
+        }
+
+        for (int i = 0; i < A.length; i++) {
+            priorityQueue.offer(new As(A[i], i));
+        }
+
+        boolean completed;
+
+        while (!priorityQueue.isEmpty()) {
+            As a = priorityQueue.poll();
+            int thresholdL = a.getIndex(); 
+            int thresholdR = a.getIndex() + L - 1 < N-1 ? a.getIndex() + L -1 : N-1;
+            for (int i = thresholdL; i <= thresholdR; i++) {
+                if (filled[i]) continue;
+                answer[i] = a.getNum();
+                filled[i] = true;
+            }
+
+        }
+
+        for (int x : answer) {
+            sb.append(x).append(" ");
+        }
+        System.out.println(sb);
+    }
+}
+
+```
+  A의 값과 인덱스를 저장하는 클래스를 만들어 comparable을 구현해 우선순위 큐에 저장할 수 있도록 했다.
+  시간은 문제 없을 것이라고 생각했는데 시간 초과가 났다... 언어의 문제일 수도 있겠다고 생각했다.
+  
+  ### 다른 풀이
+  
+  로직은 다음과 같다.
+ <br> 모든 A(값과 인덱스를 저장하는 객체)에 대해서 검사할 때,
+ 
+  1. deque.peekLast() 해서 A와 비교
+  1-1. A가 더 작거나 같다면, pollLast(), 1 반복
+  1-2. 그렇지 않다면, offer();
+   --> 이 과정을 통해서 deque에는 최솟값으로 쓰일 A들만 남게 된다.
+  2. peek()해서 인덱스가 i-L+1 보다 작은지 확인
+  2-1. 그렇다면 poll()
+  3. Stringbuilder에 peek()해서 집어넣기
+  
+[이 블로그](https://loosie.tistory.com/324)에서 덱 중간의 최솟값에 영향을 미치지 않는 요소들을 밀어내는 아이디어를 참고했다.
+  
+ 
+ 
+  ```java
+  package deque;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.LinkedList;
+class AWithIndex {
+    private int value;
+    private int index;
+
+    public AWithIndex(int value, int index) {
+        this.index = index;
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return "AWithIndex{" +
+                "value=" + value +
+                ", index=" + index +
+                '}';
+    }
+
+    public int getIndex() {
+        return index;
+    }
+}
+public class BOJ11003deque {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        String[] a = br.readLine().split(" ");
+        int N = Integer.parseInt(a[0]);
+        int L = Integer.parseInt(a[1]);
+        String[] b = br.readLine().split(" ");
+        int[] arrA = new int[N];
+        for (int i = 0; i < N; i++) {
+            arrA[i] = Integer.parseInt(b[i]);
+        }
+
+        LinkedList<AWithIndex> deque = new LinkedList<>();
+        deque.offer(new AWithIndex(arrA[0], 0));
+        sb.append(arrA[0]).append(" ");
+
+        for (int i = 1; i < arrA.length; i++) {
+
+            if (deque.peekLast().getValue() > arrA[i]) {
+                while (true) {
+                    if (deque.isEmpty()) break;
+
+                    if (deque.peekLast().getValue() > arrA[i]) deque.pollLast();
+                    else break;
+                }
+            }
+
+            deque.offer(new AWithIndex(arrA[i], i));
+
+            if (deque.peek().getIndex() < i-L+1) deque.poll();
+
+            sb.append(deque.peek().getValue()).append(" ");
+        }
+
+        System.out.println(sb);
+    }
+}
+
+```
+  검사와 동시적으로 자료구조 내의 요소를 밀어내는 등의 방법은 스택, 덱 등에서 사용할 만 한 좋은 스킬인 것 같다.
+  
+  ---
+
+# 끝
+자료구조 특성상 덱은 다른 방법으로 대체될 여지가 많은 것 같다. 우선은 앞 뒤로 넣고 빼고 할 수 있다는 점에만 주목하자.
+<br>큐나 스택에 비해 덱의 사용은 매우 지엽적이지만, 필요할 때는 꼭 써먹을 수 있도록 익숙해져야할 것 같다.
+
+> 연습문제 출처 : [encrypted-def - github](https://github.com/encrypted-def/basic-algo-lecture/blob/master/workbook.md)
