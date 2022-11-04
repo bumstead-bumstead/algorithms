@@ -56,7 +56,6 @@ public class BOJ18870 {
 
             mid = (st + en) / 2;
         }
-
         return -1;
     }
 }
