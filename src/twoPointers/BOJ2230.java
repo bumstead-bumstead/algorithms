@@ -14,9 +14,7 @@ import java.util.StringTokenizer;
 * 3-0. lp + 1 = rp일 경우, rp++
 * 3-1. m보다 작을 경우, rp++한다.
 * 3-2. m일 경우, return한다.
-* 3-3. m보다 클 경우, 현재 최솟값과 비교해서 넣은 후 lp++한다. 
-* 
-* 이분탐색 이용해야 한다면, 뺀 값 모두 계산해서 정렬한뒤 탐색하기... 이건 O(n^2)이긴 한뎅
+* 3-3. m보다 클 경우, 현재 최솟값과 비교해서 넣은 후 lp++한다.
 * 
 * */
 public class BOJ2230 {
@@ -41,9 +39,6 @@ public class BOJ2230 {
         int tmpLength;
         while (rp < n - 1) {
             tmpLength = arr[rp] - arr[lp];
-//            System.out.println("rp = " + rp + ", lp = " + lp);
-//            System.out.println("tmpLength = " + tmpLength);
-
 
             if (tmpLength == m) {
                 System.out.println(m);
@@ -60,7 +55,6 @@ public class BOJ2230 {
         }
 
         while(lp < n-1) {
-//            System.out.println("rp = " + rp + ", lp = " + lp);
             tmpLength = arr[rp] - arr[lp++];
 
             if (tmpLength >= m){
@@ -69,6 +63,5 @@ public class BOJ2230 {
         }
 
         System.out.println(minLength);
-
     }
 }
