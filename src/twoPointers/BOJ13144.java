@@ -5,7 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.StringTokenizer;
-
+/*
+ * hashSet 이용
+ * 1. 모든 데이터데 대해서 순차적으로 검사
+ * 2. 중복되는 경우, set.clear(), 해당 데이터부터 다시 검사 (해당 데이터 하나만 있는 경우 : answer += 1)
+ * 3. 중복되지 않는 경우, answer += set.size()
+ * */
 public class BOJ13144 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
