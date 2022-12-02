@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 /*
 * 다시 풀기
+* 저는 반례를 도저히 모르겠어요...
 * */
 public class BOJ13144_2 {
     public static void main(String[] args) throws IOException {
