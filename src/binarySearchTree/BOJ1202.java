@@ -10,7 +10,6 @@ import java.util.*;
 
 /*
 * 이진 트리는 대소 비교, 범위 검색, 빠른 삽입/검색/삭제에 유리하다
-*
 * */
 
 public class BOJ1202 {

@@ -7,8 +7,6 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
-//현재 위치로부터 얼마나 떨어졌는지를 어떻게 유지할 건지??
-//현재 위치로부터 떨어진 거리를 저장하는 우선순위 큐
 public class BOJ23326 {
 
     public static TreeSet<Integer> treeSet = new TreeSet<>();
