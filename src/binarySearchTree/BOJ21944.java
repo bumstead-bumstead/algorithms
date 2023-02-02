@@ -74,7 +74,6 @@ public class BOJ21944 {
                     break;
             }
         }
-
         bw.close();
     }
 }

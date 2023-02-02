@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.*;
 
 
-//유니온 파인드 복습~!11
+//유니온 파인드 복습~!
+//트리의 특징 : 트리는 일종의 그래프다!!! cycle이 없고 특정 점에서 다른 점까지의 경로가 유일하다!!! 간선이 V-1개이다!!
 public class BOJ20955 {
     static int cycleCnt = 0;
     static List<ArrayList<Integer>> graph = new ArrayList<>();

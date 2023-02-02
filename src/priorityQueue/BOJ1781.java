@@ -48,19 +48,19 @@ public class BOJ1781 {
     }
 
 }
-
-class Problem implements Comparable<Problem> {
-    int cups;
-    int deadline;
-
-    public Problem(int deadline, int cups) {
-        this.cups = cups;
-        this.deadline = deadline;
-    }
-
-    @Override
-    public int compareTo(Problem problem) {
-        if (this.cups == problem.cups) return problem.deadline - this.deadline;
-        return this.cups - problem.cups;
-    }
-}
+//
+//class Problem implements Comparable<Problem> {
+//    int cups;
+//    int deadline;
+//
+//    public Problem(int deadline, int cups) {
+//        this.cups = cups;
+//        this.deadline = deadline;
+//    }
+//
+//    @Override
+//    public int compareTo(Problem problem) {
+//        if (this.cups == problem.cups) return problem.deadline - this.deadline;
+//        return this.cups - problem.cups;
+//    }
+//}

@@ -8,12 +8,12 @@ public class BOJ1991 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-    static List<Node> nodes = new ArrayList<>();
+    static List<Node2> nodes = new ArrayList<>();
     public static void main(String[] args) throws IOException {
         int N = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < N; i++) {
-            nodes.add(new Node(Character.toString('A' + i)));
+            nodes.add(new Node2(Character.toString('A' + i)));
         }
         for (int i = 0; i < N; i++) {
             String[] tmp = br.readLine().split(" ");
@@ -33,30 +33,29 @@ public class BOJ1991 {
         bw.close();
     }
 
-    private static void preorder(Node node) throws IOException{
+    private static void preorder(Node2 node) throws IOException{
         bw.write(node.alphabet);
         if (!(node.left == null)) preorder(node.left);
         if (!(node.right == null)) preorder(node.right);
     }
-    private static void inorder(Node node) throws IOException{
+    private static void inorder(Node2 node) throws IOException{
         if (!(node.left == null)) inorder(node.left);
         bw.write(node.alphabet);
         if (!(node.right == null)) inorder(node.right);
     }
-    private static void postorder(Node node) throws IOException{
+    private static void postorder(Node2 node) throws IOException{
         if (!(node.left == null)) postorder(node.left);
         if (!(node.right == null)) postorder(node.right);
         bw.write(node.alphabet);
     }
-
 }
 
-class Node {
+class Node2 {
     String alphabet;
-    Node left;
-    Node right;
+    Node2 left;
+    Node2 right;
 
-    public Node(String alphabet) {
+    public Node2(String alphabet) {
         this.alphabet = alphabet;
     }
 

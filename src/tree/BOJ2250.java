@@ -49,10 +49,12 @@ public class BOJ2250 {
         }
 
         size(root, 1);
+
         root.position = 1;
         if (root.left != null) root.position += root.left.size;
 
         position(root);
+
         int maxWidth = -1;
         int maxDepth = -1;
         for (int i = 1; i < nodesByDepth.size(); i++) {
