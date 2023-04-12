@@ -1,12 +1,14 @@
 package BFS;
 
+import java.util.Arrays;
+
 public class test {
     public static void main(String[] args) {
-        int a= 3;
-        for (int i = 0; i < a; i++) {
-            a=2;
-            System.out.println(3);
-        }
+        int[] a = new int[]{1,2,3,4};
+
+        a = Arrays.stream(a).map(x -> 2*x).toArray();
+
+        System.out.println(Arrays.toString(a));
 
     }
 }
